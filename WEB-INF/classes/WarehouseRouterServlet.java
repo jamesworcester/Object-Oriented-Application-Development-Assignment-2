@@ -43,17 +43,29 @@ public class WarehouseRouterServlet extends HttpServlet {
         // TODO 15: Get the path info from the HttpServletRequest argument. We need to get the URL path from incoming request
         //System.out.println(request);
         //String pathInfo = ""; // <-- some changes needed here
+        //String pathInfo = request.getPathInfo();
+        //System.out.println(pathInfo);
+        //String pathInfo = request.getRequestURI();
+        //System.out.println(pathInfo);
         String pathInfo = request.getPathInfo();
+        //System.out.println(pathInfo);
 
         // TODO 16: Get the http method from the HttpServletRequest argument. We need to get incoming request method
         //String httpMethod = ""; // <-- some changes needed here
-        String httpMethod = request.getRequestURI();
+        //System.out.println(request.getRequestURI());
+        //String httpMethod = request.getRequestURI();
+        //System.out.println(httpMethod);
+        String httpMethod = request.getMethod();
+        //System.out.println(httpMethod);
 
         // pathInfo will be in format: /{resource-name}/{query-string}
         // we want resource-name; we split on "/" and take the
         // second occurence, which is array position 1 of split("/");
         // any third occurence would be a model id or a search query parameter
         String pathInfoArray[] = pathInfo.split("/");
+        // for(int i = 0; i < pathInfoArray.length; i++){
+        //     System.out.println(pathInfoArray[i]);
+        // }
 
         try {
             // pathInfo has to have at least a resource-name, which is at array
@@ -62,11 +74,16 @@ public class WarehouseRouterServlet extends HttpServlet {
                 throw new MissingArgumentException("Resource target not defined.");
             }
             // TODO 17: Get the data model name from pathInfoArray. The model name will be in the request after /api/
-            String modelName = ""; // <-- some changes needed here
+            //String modelName = ""; // <-- some changes needed here
+            String modelName = pathInfoArray[1];
+            //System.out.print(modelName);
+            //System.out.print(modelName);
             
             // Setting the data model to be uppercase and all other characters lowercase 
             modelName = modelName.toLowerCase();
+            //System.out.print(modelName);
             modelName = modelName.substring(0, 1).toUpperCase() + modelName.substring(1);
+            //System.out.print(modelName);
             
             // the controller is needed for the matching action defined by the http method
             String controllerName = String.join("", modelName, CONTROLLER_STR);
@@ -77,10 +94,12 @@ public class WarehouseRouterServlet extends HttpServlet {
             //      is ProductController
 
             // TODO 18: Find the controllerClass using String controllerName,
-            Class<?> controllerClass = null; // <-- some changes needed here, hint: Class.forName(...)
+            //Class<?> controllerClass = null; // <-- some changes needed here, hint: Class.forName(...)
+            Class<?> controllerClass = Class.forName(controllerName);
 
             // TODO 19: Find the modelClass using String modelName
-            Class<?> modelClass = null; // <-- some changes needed here, hint: Class.forName(...)
+            //Class<?> modelClass = null; // <-- some changes needed here, hint: Class.forName(...)
+            Class<?> modelClass = Class.forName(modelName);
 
             // getting database config info from web.xml, putting the info in
             // a string array
