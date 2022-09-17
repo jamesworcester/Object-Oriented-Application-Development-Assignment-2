@@ -33,15 +33,21 @@ public class WarehouseRouterServlet extends HttpServlet {
 
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         // TODO 14: Set the response CONTENT_TYPE and CHARACTER_ENCODING
+        response.setContentType(CONTENT_TYPE);
+        response.setCharacterEncoding(CHARACTER_ENCODING);
 
         Object responseObj = null;
 
         // TODO 15: Get the path info from the HttpServletRequest argument. We need to get the URL path from incoming request
-        String pathInfo = ""; // <-- some changes needed here
+        //System.out.println(request);
+        //String pathInfo = ""; // <-- some changes needed here
+        String pathInfo = request.getPathInfo();
 
         // TODO 16: Get the http method from the HttpServletRequest argument. We need to get incoming request method
-        String httpMethod = ""; // <-- some changes needed here
+        //String httpMethod = ""; // <-- some changes needed here
+        String httpMethod = request.getRequestURI();
 
         // pathInfo will be in format: /{resource-name}/{query-string}
         // we want resource-name; we split on "/" and take the
