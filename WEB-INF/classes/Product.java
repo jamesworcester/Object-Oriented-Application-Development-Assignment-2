@@ -6,22 +6,27 @@ public class Product {
     public static final int MINIMUM_QUANTITY = 1;
 
     //TODO 01: add Min annotation? Does it have any params?
+    @Min(value = 0)
     private int id;
 
     //TODO 02: add NotNull annotation? Does it have any params?
+    @NotNull
     private Item item;
 
     //TODO 03: add NotNull annotation? Does it have any params?
+    @NotNull
     private LocalDate date;
     
     //TODO 04: add Min annotation? Does it have any params?
+    @Min(value = MINIMUM_QUANTITY)
     private int quantity;
 
     //TODO 05: add NotNull annotation? Does it have any params?
-    private WarehosueDSC.SECTION section;
+    @NotNull
+    private WarehouseDSC.SECTION section;
 
     // constructor
-    public Product(int id, Item item, LocalDate date, int quantity, WarehosueDSC.SECTION section) {
+    public Product(int id, Item item, LocalDate date, int quantity, WarehouseDSC.SECTION section) {
         this.id = id;
         this.item = item;
         this.date = date != null ? date : LocalDate.now();
@@ -30,11 +35,11 @@ public class Product {
     }
 
     // constructor
-    public Product(Item item, LocalDate date, int quantity, WarehosueDSC.SECTION section) throws Exception {
+    public Product(Item item, LocalDate date, int quantity, WarehouseDSC.SECTION section) throws Exception {
         this(0, item, date, quantity, section);
     }
 
-    public Product(Item item, int quantity, WarehosueDSC.SECTION section) throws Exception {
+    public Product(Item item, int quantity, WarehouseDSC.SECTION section) throws Exception {
         this(item, null, quantity, section);
     }
 
@@ -55,13 +60,13 @@ public class Product {
     }
 
     public String getDateStr() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(WarehosueDSC.DATE_FORMAT);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(WarehouseDSC.DATE_FORMAT);
 
         return this.date.format(dtf);
     }
 
     public String getDaysAgo() {
-        return WarehosueDSC.calcDaysAgoStr(date);
+        return WarehouseDSC.calcDaysAgoStr(date);
     }
 
     public int getQuantity() {
@@ -72,13 +77,13 @@ public class Product {
         this.quantity--;
     }
 
-    public WarehosueDSC.SECTION getSection() {
+    public WarehouseDSC.SECTION getSection() {
         return this.section;
     }
     @Override
     public String toString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(WarehosueDSC.DATE_FORMAT);
-        String daysAgo = WarehosueDSC.calcDaysAgoStr(date);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(WarehouseDSC.DATE_FORMAT);
+        String daysAgo = WarehouseDSC.calcDaysAgoStr(date);
 
         String itemStr = null;
         if (this.item != null)
@@ -98,7 +103,7 @@ public class Product {
         // this is an example of a valid case; test each annotation accordingly, using invalid case(s)
         // NOTE: this is not a required task, but will help you test your Task 1 requirements
         Item i = new Item("Beef", true);
-        Product g = new Product(i, 1, WarehosueDSC.SECTION.COOLING);
+        Product g = new Product(i, 1, WarehouseDSC.SECTION.COOLING);
 
         try {
             Validator.validate(g);

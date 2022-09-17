@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 
-public class WarehosueDSC {
+public class WarehouseDSC {
 
     // the date format we will be using across the application
     public static final String DATE_FORMAT = "dd/MM/yyyy";
@@ -47,7 +47,7 @@ public class WarehosueDSC {
         //  In tomcat this will come from web.xml
         //  In the testing methods in the main below they are in the constructor call CHANGE THIS. 
         
-    public WarehosueDSC(String dbHost, String dbUserName, String dbPassword) {
+    public WarehouseDSC(String dbHost, String dbUserName, String dbPassword) {
         this.dbUserName = dbUserName;
         this.dbPassword = dbPassword;
         this.dbURL = "jdbc:mysql://" + dbHost;
@@ -105,7 +105,7 @@ public class WarehosueDSC {
             }
             LocalDate date = LocalDate.parse(rs.getString(3), dtf);
             int quantity = rs.getInt(4);
-            WarehosueDSC.SECTION section = SECTION.valueOf(rs.getString(5));
+            WarehouseDSC.SECTION section = SECTION.valueOf(rs.getString(5));
 
             product = new Product(id, item, date, quantity, section);
 
@@ -129,7 +129,8 @@ public class WarehosueDSC {
         return items;
     }
 
-    // public List<Item> getAllExpiredItems() throws Exception {
+    //this section was originally commented out in the supplied file
+    public List<Item> getAllExpiredItems() throws Exception {
         String queryString = "SELECT * FROM item where expires is true";
         ResultSet rs = statement.executeQuery(queryString);
 
@@ -164,7 +165,7 @@ public class WarehosueDSC {
             int quantity = rs.getInt(4);
             SECTION section = SECTION.valueOf(rs.getString(5));
 
-            prodcuts.add(new Product(id, item, date, quantity, section));
+            products.add(new Product(id, item, date, quantity, section));
         }
 
         return products;
@@ -282,11 +283,11 @@ public class WarehosueDSC {
 
     public static void main(String[] args) throws Exception {
         
-        WarehosueDSC dsc = new WarehosueDSC("latcs7.cs.latrobe.edu.au:3306/12345678", "12345678", "j2Pth2f5GntPTFn9mmNk");
+        WarehouseDSC dsc = new WarehouseDSC("latcs7.cs.latrobe.edu.au:3306/12345678", "12345678", "j2Pth2f5GntPTFn9mmNk");
         // WarehosueDSC dsc = new WarehosueDSC("localhost:3306/Warehousedb", "root", "t0mcatRul35");
         try {
             dsc.connect();
-            System.out.println(dsc.getAllproducts());
+            System.out.println(dsc.getAllProducts());
             System.out.println(dsc.removeProduct(455));
             System.out.println(dsc.useProduct(455));
             System.out.println(dsc.useProduct(19));

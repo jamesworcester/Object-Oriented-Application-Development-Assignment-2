@@ -1,9 +1,9 @@
 import java.util.List;
 
 public class ProductController {
-    private WarehosueDSC WarehosueDSC;
+    private WarehouseDSC WarehosueDSC;
     public ProductController(String dbHost, String dbUserName, String dbPassword) throws Exception {
-        WarehosueDSC = new WarehosueDSC(dbHost, dbUserName, dbPassword);
+        WarehosueDSC = new WarehouseDSC(dbHost, dbUserName, dbPassword);
         try {
             WarehosueDSC.connect();
         } catch (Exception e) {
