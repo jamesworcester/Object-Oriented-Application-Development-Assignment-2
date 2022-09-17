@@ -126,18 +126,31 @@ public class WarehouseRouterServlet extends HttpServlet {
                     // relevant model id. If there is a third element then find the matching controllerClass method get(int id)
                     // NOTE: the 3rd argument is sent as a String and needs to be
                     // parsed as our model id is of type int.
+
+                    // for(int i = 0; i < pathInfoArray.length; i++)
+                    // {
+                    //     System.out.println(pathInfoArray[i]);
+                    // }
+
+                    //System.out.print(pathInfoArray.length);
                     
                     if (pathInfoArray.length >= 3) {
                         if( pathInfoArray[2].equals("e")) { // the 3rd argument is an "e"
                             method = controllerClass.getMethod("getAllExpiredItems");
                             // Both ProductController and ItemController have a getAllExpiredItems() method
+                            //System.out.println(method);
                             responseObj = method.invoke(controllerInstance);
                         } else {
                         // TODO 20: find the modelId in pathInfoArray (don't forget to parse to int)
                         // Your Product id will be 3rd element in the array
-                            modelId = 0; // <-- some changes needed here
+                            //modelId = 0; // <-- some changes needed here
+                            //modelId = parseInt(pathInfoArray[2]);
+                            modelId = Integer.parseInt(pathInfoArray[2]);
+                            System.out.println(modelId);
                             method = controllerClass.getMethod("get", int.class);
+                            //System.out.println(method);
                             responseObj = method.invoke(controllerInstance, modelId);
+                            //System.out.println(responseObj);
 
                             if (responseObj == null) {
                                 throw new ResourceNotFoundException(modelName + " with id " + modelId + " not found!");
@@ -148,10 +161,13 @@ public class WarehouseRouterServlet extends HttpServlet {
                     else {
 
                         // TODO 21: identify method get with no id. HINT look above
-                        method = null; // <-- some changes needed here
+                        //method = null; // <-- some changes needed here
+                        method = controllerClass.getMethod("get");
 
                         //TODO 22: invoke method on controllerInstance. HINT look above
-                        responseObj = null; // <-- some changes needed here
+                        //responseObj = null; // <-- some changes needed here
+                        responseObj = method.invoke(controllerInstance);
+
                     }
                     break;
                 case HTTP_POST: // NOTE: this case is given fully complete; it is the most complex part; use it as a reference example
