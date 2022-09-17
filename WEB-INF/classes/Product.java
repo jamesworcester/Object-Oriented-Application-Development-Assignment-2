@@ -14,7 +14,7 @@ public class Product {
     private Item item;
 
     //TODO 03: add NotNull annotation? Does it have any params?
-    @NotNull
+    @NotNull //I don't believe this is required as if the date is null it gets set to the current date in the Product constructor
     private LocalDate date;
     
     //TODO 04: add Min annotation? Does it have any params?
@@ -102,8 +102,31 @@ public class Product {
         // CONSIDER testing your validation annotations here
         // this is an example of a valid case; test each annotation accordingly, using invalid case(s)
         // NOTE: this is not a required task, but will help you test your Task 1 requirements
+        
+        
+        //Item i = new Item("Beef", true);
+        //Product g = new Product(i, 1, WarehouseDSC.SECTION.COOLING);//
+
+
+        //My validations
+        //Validating for @NotNull Item
+        //Item i = null; //item = null
+        //Product g = new Product(i, 1, WarehouseDSC.SECTION.COOLING);
+
+        //Validating for @NotNull date
+        //Item i = new Item("Beef", true);
+        //Product g = new Product(i, null, 1, WarehouseDSC.SECTION.COOLING);
+
+        //Validating for @Min quantity
+        //Item i = new Item("Beef", true);
+        //Product g = new Product(i, -1, WarehouseDSC.SECTION.COOLING); //quantity = -1
+        //Product g = new Product(i, 0, WarehouseDSC.SECTION.COOLING); //quantity = 0
+        //Product g = new Product(i, 1, WarehouseDSC.SECTION.COOLING); //quantity = 1
+
+        //Validating for @NotNull section
         Item i = new Item("Beef", true);
-        Product g = new Product(i, 1, WarehouseDSC.SECTION.COOLING);
+        //Product g = new Product(i, 1, null); //section = null
+        Product g = new Product(i, 1, WarehouseDSC.SECTION.FREEZER); //section != null
 
         try {
             Validator.validate(g);
