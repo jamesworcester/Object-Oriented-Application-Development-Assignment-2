@@ -106,9 +106,7 @@ public class WarehouseDSC {
             LocalDate date = LocalDate.parse(rs.getString(3), dtf);
             int quantity = rs.getInt(4);
             WarehouseDSC.SECTION section = SECTION.valueOf(rs.getString(5));
-
             product = new Product(id, item, date, quantity, section);
-
         }
 
         return product;

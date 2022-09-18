@@ -146,7 +146,7 @@ public class WarehouseRouterServlet extends HttpServlet {
                             //modelId = 0; // <-- some changes needed here
                             //modelId = parseInt(pathInfoArray[2]);
                             modelId = Integer.parseInt(pathInfoArray[2]);
-                            System.out.println(modelId);
+                            //System.out.println(modelId);
                             method = controllerClass.getMethod("get", int.class);
                             //System.out.println(method);
                             responseObj = method.invoke(controllerInstance, modelId);
