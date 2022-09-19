@@ -208,13 +208,17 @@ public class WarehouseRouterServlet extends HttpServlet {
                     if (pathInfoArray.length >= 3) {
 
                         // TODO 26: find the modelId in pathInfoArray (don't forget to parse to int)
-                        modelId = 0; // <-- some changes needed here
+                        //modelId = 0; // <-- some changes needed here
+                        modelId = Integer.parseInt(pathInfoArray[2]);
 
                         // TODO 27: identify method get with id
-                        method = null; // <-- some changes needed here
+                        //method = null; // <-- some changes needed here
+                        method = controllerClass.getMethod("delete", int.class);
 
                         //TODO 28: invoke method on controllerInstance, passing modelId
-                        responseObj = null; // <-- some changes needed here
+                        //responseObj = null; // <-- some changes needed here
+                        responseObj = method.invoke(controllerInstance, modelId);
+
 
                         if (Integer.parseInt(responseObj.toString()) <= 0)
                             throw new ResourceNotFoundException(modelName + " with id " + modelId + " not found! Cannot Delete!");
