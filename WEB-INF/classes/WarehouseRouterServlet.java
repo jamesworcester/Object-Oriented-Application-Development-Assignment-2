@@ -261,6 +261,9 @@ public class WarehouseRouterServlet extends HttpServlet {
                     // set message to intercepted exception
                     // see provided Validation Framework Validator class (exception handling part) for how to
                     //  - this was covered in Labs
+                    response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+                    message = "Intercepted Exception";
+                    
 
                 // TODO 30: identify instanceof ValidationException exception
                     // set response status to SC_PRECONDITION_FAILED
