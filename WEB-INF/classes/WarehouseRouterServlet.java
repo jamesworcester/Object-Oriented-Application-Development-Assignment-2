@@ -188,13 +188,16 @@ public class WarehouseRouterServlet extends HttpServlet {
                     if (pathInfoArray.length >= 3) {
 
                         // TODO 23: Find the modelId in pathInfoArray (don't forget to parse to int)
-                        modelId = 0; // <-- some changes needed here
+                       // modelId = 0; // <-- some changes needed here
+                       modelId = Integer.parseInt(pathInfoArray[2]);
 
                         // TODO 24: Identify method update with id
-                        method = null; // <-- some changes needed here
+                        // method = null; // <-- some changes needed here
+                        method = controllerClass.getMethod("update", int.class);
 
                         //TODO 25: Invoke method on controllerInstance, passing modelId
-                        responseObj = null; // <-- some changes needed here
+                        //responseObj = null; // <-- some changes needed here
+                        responseObj = method.invoke(controllerInstance, modelId);
 
                         if (responseObj == null)
                             throw new ResourceNotFoundException(modelName + " with id " + modelId + " not found! Cannot Update!");
