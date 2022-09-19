@@ -261,16 +261,25 @@ public class WarehouseRouterServlet extends HttpServlet {
                     // set message to intercepted exception
                     // see provided Validation Framework Validator class (exception handling part) for how to
                     //  - this was covered in Labs
-                    response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-                    message = "Intercepted Exception";
+                    if(exp.getCause() instanceof UpdateNotAllowedException)
+                    {
+                        response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+                        message = exp.toString();
+                    }
                     
+
 
                 // TODO 30: identify instanceof ValidationException exception
                     // set response status to SC_PRECONDITION_FAILED
                     // set message to intercepted exception
                     // see provided Validation Framework Validator class (exception handling part) for how to
                     //  - this was covered in Labs
-
+                    
+                    if(exp.getCause() instanceof ValidationException)
+                    {
+                        response.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED);
+                        message = exp.toString();
+                    }
             }
 
             response.getWriter().write(new Gson().toJson(buildMessage(message)));
