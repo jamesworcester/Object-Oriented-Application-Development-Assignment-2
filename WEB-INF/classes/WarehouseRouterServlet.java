@@ -264,7 +264,7 @@ public class WarehouseRouterServlet extends HttpServlet {
                     if(exp.getCause() instanceof UpdateNotAllowedException)
                     {
                         response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-                        message = exp.toString();
+                        message = exp.getCause().getMessage();
                     }
                     
 
@@ -278,7 +278,7 @@ public class WarehouseRouterServlet extends HttpServlet {
                     if(exp.getCause() instanceof ValidationException)
                     {
                         response.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED);
-                        message = exp.toString();
+                        message = exp.getCause().getMessage();
                     }
             }
 
