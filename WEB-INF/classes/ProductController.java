@@ -61,25 +61,26 @@ public class ProductController {
     }
     // To perform some quick tests
     public static void main(String [] args) throws Exception {
-        System.out.println("ProductController main...");
-        // CONSIDER testing each of the above methods here
-        // NOTE: this is not a required task, but will help you test your Task 2 requirements
+        // System.out.println("ProductController main...");
+        // // CONSIDER testing each of the above methods here
+        // // NOTE: this is not a required task, but will help you test your Task 2 requirements
         
-        //try {
-            // CHANGE the username and password to match yours
-            // CHANGE the first param to your database host if you need to
-            //ProductController gc = new ProductController("localhost:3306/warehousedb", "root", "password");
-            //System.out.println(gc.get()); // get all products
-            //System.out.println(gc.get(19)); // some id that exists in your Product table
-            //System.out.println(gc.getAllExpiredItems());
-            //Item myitem = new Item("Beef",true);
-            //System.out.println(gc.add(new Product(myitem,-1, gc.section.COOLING)));
-            //System.out.println(gc.update(41)); // some id that exists in your Product table
-            //System.out.println(gc.delete(42)); // some id that exists in your Product table
-            // add others as you wish
-        //} catch (Exception exp) {
-         //   exp.printStackTrace();
-        //}
+        // try {
+        //     //CHANGE the username and password to match yours
+        //     //CHANGE the first param to your database host if you need to
+        //     System.out.println("THIS SUCKS");
+        //     ProductController gc = new ProductController("localhost:3306/warehousedb", "root", "password");
+        //     System.out.println(gc.get()); // get all products
+        //     System.out.println(gc.get(19)); // some id that exists in your Product table
+        //     System.out.println(gc.getAllExpiredItems());
+        //     Item myitem = new Item("Beef",true);
+        //     System.out.println(gc.add(new Product(myitem,-1, gc.section.COOLING)));
+        //     System.out.println(gc.update(41)); // some id that exists in your Product table
+        //     System.out.println(gc.delete(42)); // some id that exists in your Product table
+        //     //add others as you wish
+        // } catch (Exception exp) {
+        //    exp.printStackTrace();
+        // }
         
     }
 }
