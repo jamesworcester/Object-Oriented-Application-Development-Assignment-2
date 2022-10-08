@@ -1,3 +1,9 @@
+/*
+ * Programmer: James WORCESTER
+ * Student ID: 2076 7086
+ * Subject: CSE3OAD
+ */
+
 import java.io.*;
 import java.lang.reflect.*;
 
