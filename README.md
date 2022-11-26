@@ -1,6 +1,4 @@
-# warehouse
-
-## Assignment 2 for Object Oriented Application Development
+# Object Oriented Application Development Assignment 2
 This assignment revolved around:
 - using Java Reflection
 - using Java Annotations
